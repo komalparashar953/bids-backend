@@ -9,7 +9,11 @@ const app = express();
 const server = http.createServer(app);
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Routes
@@ -62,7 +66,7 @@ app.get('/', (req, res) => {
 // Socket.io Setup
 const io = new Server(server, {
     cors: {
-        origin: ["http://localhost:5173", process.env.FRONTEND_URL || "*"],
+        origin: "*", // Allow all origins to fix CORS issues in deployment
         methods: ["GET", "POST"]
     }
 });
