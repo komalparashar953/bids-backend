@@ -82,7 +82,7 @@ const placeBid = (itemId, userId, amount) => {
         return { success: false, message: "Bid must be higher than current bid" };
     }
 
-    ////////Handling the current bidder for not placing the bid if he is the highestBidder now
+    //Handling the current bidder for not placing the bid if he is the highestBidder now
     if(userId == item.highestBidder) {
         return {success: false, message: "You are already the highest bidder of this item"};
     }
